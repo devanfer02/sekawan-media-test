@@ -1,0 +1,50 @@
+Table roles {
+  role_id uuid [primary key]
+  role_name varchar(70)
+  created_at timestamp
+}
+
+Table users {
+  user_id uuid [primary key]
+  fullname varchar(200)
+  email varchar(200)
+  password varchar(255)
+  role_id uuid [ref: > roles.role_id]
+  created_at timestamp
+}
+
+Table vehicles {
+  vehicle_id uuid [primary key]
+  vehicle_name varchar(200)
+  vehicle_type enum(person, cargo)
+  is_rented bool
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table reservations {
+  reservation_id int [primary key, increment]
+  vehicle_id uuid [ref: > vehicles.vehicle_id]
+  admin_id uuid [ref: > users.user_id]
+  driver_name varchar(200) [not null]
+  destination varchar(200)
+  start_date date [not null]
+  end_date date [not null]
+  created_at timestamp
+}
+
+Table approvals {
+  approval_id int [primary key, increment]
+  reservation_id int [ref: > reservations.reservation_id]
+  approver_id uuid [ref: > users.user_id]
+  approval_level int
+  status enum(pending, approved, rejected)
+  comments text
+  created_at timestamp
+}
+
+Table vehicle_usage_records {
+  reservation_id int [ref: > reservations.reservation_id]
+  fuel_consumption float
+  distance_traveled float
+}
