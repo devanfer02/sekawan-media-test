@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $keyType = "uuid";
+    protected $keyType = "string";
     protected $primaryKey = "role_id";
     protected $fillable = [
         'role_id',

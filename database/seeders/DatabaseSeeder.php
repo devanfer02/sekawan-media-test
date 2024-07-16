@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Role;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +16,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $adminRoleId = Uuid::uuid7();
+        $approverRoleId = Uuid::uuid7();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Role::insert([
+            [
+                'role_id' => $adminRoleId,
+                'role_name' => 'Admin'
+            ],
+            [
+                'role_id' => $approverRoleId,
+                'role_name' => 'Approver'
+            ]
+        ]
+        );
+
+        // for apporvers, please register through endpoint /register
+        User::insert([
+            [
+                'user_id' => Uuid::uuid7(),
+                'role_id' => $adminRoleId,
+                'fullname' => 'Admin 1',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('pass123')
+            ]
         ]);
     }
 }

@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Approval extends Model
 {
+    protected $fillable = [
+        'reservation_id',
+        'approver_id',
+        'status',
+        'comments'
+    ];
     use HasFactory;
 }

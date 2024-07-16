@@ -1,8 +1,11 @@
 <x-guest-layout>
   <div class="tw-bg-primary tw-h-full">
     <div class="tw-flex tw-justify-center tw-items-center tw-h-full">
-      <div class="tw-border tw-border-secondary tw-bg-white tw-rounded-lg tw-py-20 tw-px-16 tw-w-[500px]">
+      <div class="tw-border tw-border-secondary tw-bg-white tw-rounded-lg tw-pt-10 tw-pb-20 tw-px-16 tw-w-[500px]">
         <div>
+          <div class="tw-flex tw-justify-center tw-items-center">
+            <iconify-icon icon="mdi:laravel" width="5em" height="5em" class="tw-text-secondary"></iconify-icon>
+          </div>
           <h1 class="tw-text-3xl tw-font-semibold tw-text-start">
             Login
           </h1>
@@ -32,8 +35,8 @@
             </button>
           </div>
           <x-alert />
-          <div >
-            <span>Don't have an account? <a href="{{route('auth.pages.register')}}" class="tw-underline tw-text-secondary">Register</a></span>
+          <div>
+            <span class="tw-block">Don't have an account? <a href="{{route('auth.pages.register')}}" class="tw-underline tw-text-secondary">Register</a></span>
           </div>
         </form>
       </div>

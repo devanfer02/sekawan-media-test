@@ -23,7 +23,7 @@ class AuthController extends Controller
 
             return redirect()->route('dashboard');
         } catch (\Exception $e) {
-            return redirect()->back()->with('failed', $e->getMessage());
+            return redirect()->route('auth.pages.login')->with('failed', $e->getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ class AuthController extends Controller
         try {
             $this->authService->register($request);
 
-            return redirect()->route('login');
+            return redirect()->route('auth.pages.login');
         } catch (\Exception $e) {
             return redirect()->route('auth.pages.register')->with('failed', $e->getMessage());
         }
@@ -45,7 +45,7 @@ class AuthController extends Controller
         return [
             'fullname' => 'required|min:4|max:150',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:50|alpha_num:ascii'
+            'password' => 'required|min:6|max:50|alpha_num:ascii|confirmed'
         ];
     }
 
@@ -60,7 +60,8 @@ class AuthController extends Controller
             'password.required' => 'Password field is required',
             'password.min' => 'Password field min length is 6 characters',
             'password.max' => 'Password field max length is 50 characters',
-            'password.alpha_num' => 'Password must contain alpha numeric characters'
+            'password.alpha_num' => 'Password must contain alpha numeric characters',
+            'password.confirmed' => 'Password should match with confirm password field'
         ];
     }
 
