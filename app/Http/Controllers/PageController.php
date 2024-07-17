@@ -21,6 +21,21 @@ class PageController extends Controller
         return view('pages.auth.register');
     }
 
+    public function vehicle()
+    {
+        return view('pages.vehicles.index');
+    }
+
+    public function reservation()
+    {
+        return view('pages.reservations.index');
+    }
+
+    public function log()
+    {
+        return view('pages.logs.index');
+    }
+
     public function notFound()
     {
         return view('pages.notfound');

@@ -13,6 +13,7 @@ class Input extends Component
     public $id;
     public $required;
     public $value;
+    public $placeholder;
     /**
      * Create a new component instance.
      */
@@ -22,6 +23,7 @@ class Input extends Component
         string $id,
         bool $required = false,
         string $value = "",
+        string $placeholder = "",
     )
     {
         $this->type = $type;
@@ -29,6 +31,7 @@ class Input extends Component
         $this->id = $id;
         $this->required= $required;
         $this->value = $value;
+        $this->placeholder = $placeholder;
     }
 
     /**

@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\VehicleService;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    private $vehicleSvc;
+
+    public function __construct()
+    {
+        $this->vehicleSvc = new VehicleService();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $vehicles = Vehicle::paginate(10);
+
+        return view('pages.vehicles.index', compact('vehicles'));
     }
 
     /**
@@ -20,7 +30,7 @@ class VehicleController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.vehicles.create');
     }
 
     /**
@@ -28,7 +38,15 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->rules(), $this->rulesMessage());
+
+        try {
+            $this->vehicleSvc->store($request);
+
+            return redirect()->route('vehicles.pages.index')->with('success', 'Successfully create new vehicle');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failed', $e->getMessage());
+        }
     }
 
     /**
@@ -44,7 +62,7 @@ class VehicleController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        //
+        return view('pages.vehicles.edit', compact('vehicle'));
     }
 
     /**
@@ -52,14 +70,33 @@ class VehicleController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        //
+        $request->validate($this->rules(), $this->rulesMessage());
+
+        try {
+            $this->vehicleSvc->update($request, $vehicle);
+
+            return redirect()->route('vehicles.pages.index')->with('success', 'Successfully update vehicle data');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failed', $e->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Vehicle $vehicle)
+    private function rules()
     {
-        //
+        return [
+            'vehicle_name' => 'required|min:5|max:50',
+            'vehicle_type' => 'required|in:Person,Cargo'
+        ];
+    }
+
+    private function rulesMessage()
+    {
+        return [
+            'vehicle_name.requried' => 'Nama Kendaraan wajib diisi',
+            'vehicle_name.min' => 'Minimal panjang nama kendaraan adalah 5 karakter',
+            'vehicle_name.max' => 'Maksimal panjang nama kendaraan adalah 50 karakter',
+            'vehicle_type.required' => 'Tipe kendaraan wajib diisi',
+            'vehicle_type.in' => 'Tipe kendaraan harus merupakan Person atau Cargo'
+        ];
     }
 }

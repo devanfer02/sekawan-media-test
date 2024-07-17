@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -38,6 +39,13 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('auth.pages.register')->with('failed', $e->getMessage());
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        return redirect()->route('auth.pages.login');
     }
 
     private function registerRules(): array
