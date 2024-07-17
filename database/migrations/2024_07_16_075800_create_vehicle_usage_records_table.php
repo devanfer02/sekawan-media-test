@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reservation_id');
             $table->float('fuel_consumption', 2);
             $table->float('distance_traveled', 2);
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('reservation_id')->references('reservation_id')->on('reservations');
         });

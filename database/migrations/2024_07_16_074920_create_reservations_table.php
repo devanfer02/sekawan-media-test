@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('destination');
             $table->date('start_date');
             $table->date('end_date');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
 
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
             $table->foreign('admin_id')->references('user_id')->on('users');

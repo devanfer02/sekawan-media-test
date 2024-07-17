@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">Log Aplikasi</h1>
+        <h1 class="tw-text-3xl">List Pengguna</h1>
       </div>
       <x-alert />
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>
@@ -12,25 +12,24 @@
         <thead>
           <tr class="tw-border tw-border-secondary tw-bg-secondary ">
             <th class="tw-py-2 tw-text-white tw-text-center">No</th>
-            <th class="tw-py-2 tw-text-white">Nama Pengguna</th>
-            <th class="tw-py-2 tw-text-white">Aksi</th>
-            <th class="tw-py-2 tw-text-white">Waktu</th>
+            <th class="tw-py-2 tw-text-white">Nama Lengkap</th>
+            <th class="tw-py-2 tw-text-white">Role</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($logs as $log)
+          @foreach($users as $user)
           <tr class="tw-border tw-border-secondary">
             <td class="tw-py-2 tw-text-center">{{ $loop->iteration }}</td>
-            <td class="tw-py-2">{{ $log->user->fullname }}</td>
-            <td class="tw-py-2">{{ $log->action }}</td>
-            <td class="tw-py-2">{{ $log->created_at }}</td>
+            <td class="tw-py-2">{{ $user->fullname }}</td>
+            <td class="tw-py-2">{{ $user->role->role_name }}</td>
+
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
     <div>
-      {!! $logs->links() !!}
+      {!! $users->links() !!}
     </div>
   </div>
 </x-app-layout>

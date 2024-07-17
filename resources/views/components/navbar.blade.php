@@ -10,6 +10,7 @@
         <x-navlink route="vehicles*" href="{{ route('vehicles.pages.index') }}" name="Kendaraan"/>
         <x-navlink route="reservations*" href="{{ route('reservations.pages.index') }}" name="Pemesanan"/>
         <x-navlink route="logs*" href="{{ route('logs.pages.index') }}" name="Log Aplikasi"/>
+        <x-navlink route="users*" href="{{ route('users.pages.index') }}" name="Pengguna"/>
 
         <div class="tw-block lg:tw-hidden">
           <li class="nav-item">
@@ -22,10 +23,15 @@
       </ul>
       <div class="lg:tw-flex tw-justify-end navbar-nav tw-hidden">
         <li class="nav-item">
-          <a class="nav-link" href="#">Admin 1</a>
+          <a class="nav-link" href="#">{{ auth()->user()->fullname  }}</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="#">Logout</a>
+          <form action="{{ route('auth.request.logout') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="nav-link" type="submit">Logout</button>
+          </form>
+
         </li>
       </div>
     </div>

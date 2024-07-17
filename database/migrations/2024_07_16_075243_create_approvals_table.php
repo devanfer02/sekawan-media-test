@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('approver_id');
             $table->enum('status', ['pending', 'approved', 'rejected']);
             $table->text('comments');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
 
             $table->foreign('approver_id')->references('user_id')->on('users');
             $table->foreign('reservation_id')->references('reservation_id')->on('reservations');

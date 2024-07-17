@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Services\VehicleService;
+use App\Http\Services\LogService;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
     private $vehicleSvc;
+    private $logSvc;
 
     public function __construct()
     {
         $this->vehicleSvc = new VehicleService();
+        $this->logSvc = new LogService();
     }
 
     /**
@@ -42,6 +45,8 @@ class VehicleController extends Controller
 
         try {
             $this->vehicleSvc->store($request);
+
+            $this->logSvc->create('membuat mobil ' . $request['vehicle_name']);
 
             return redirect()->route('vehicles.pages.index')->with('success', 'Successfully create new vehicle');
         } catch (\Exception $e) {

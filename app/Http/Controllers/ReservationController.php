@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -12,7 +14,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::paginate(10);
+
+        return view('pages.reservations.index', compact('reservations'));
     }
 
     /**
@@ -20,7 +24,14 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+
+        $vehicles = Vehicle::all();
+        $users = User::with('role')->whereHas('role', function($query) {
+            $query->where('role_name', '=', 'Approver');
+        })->get();
+
+
+        return view('pages.reservations.create', compact('vehicles', 'users'));
     }
 
     /**

@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,13 +25,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+
         return [
-            'name' => fake()->name(),
+            'user_id' => Uuid::uuid7(),
+            'role_id' => '',
+            'fullname' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password123'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function role(string $roleName)
+    {
+        $role = Role::where('role_name', '=', $roleName)->first();
+
+        return $this->state(fn (array $attributes) => [
+            'role_id' => $role->role_id,
+        ]);
     }
 
     /**

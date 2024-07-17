@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Vehicle;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -31,7 +32,6 @@ class DatabaseSeeder extends Seeder
         ]
         );
 
-        // for apporvers, please register through endpoint /register
         User::insert([
             [
                 'user_id' => Uuid::uuid7(),
@@ -41,5 +41,9 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('pass123')
             ]
         ]);
+
+        User::factory(25)->role('Approver')->create();
+
+        Vehicle::factory(50)->create();
     }
 }

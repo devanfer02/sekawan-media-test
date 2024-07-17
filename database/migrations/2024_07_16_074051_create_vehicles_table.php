@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id('vehicle_id')->primary();
             $table->string('vehicle_name')->nullable(false);
             $table->enum('vehicle_type', ['Person', 'Cargo'])->nullable(false);
-            $table->timestamps();
+            $table->enum('vehicle_owner', ['Company', 'Rental']);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 
