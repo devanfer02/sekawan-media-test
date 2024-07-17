@@ -34,4 +34,22 @@ class Reservation extends Model
     {
         return $this->hasMany(Approval::class, 'reservation_id', 'reservation_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['approver'] ?? false, function($query, $approver) {
+            return $query->whereHas('approvals', function($query) use($approver) {
+                return $query->where('approver_id', '=', $approver);
+            });
+        })->when($filters['status'] ?? false, function($query, $status) use($filters) {
+            return $query->whereHas('approvals', function($query) use($status, $filters) {
+                $query->where('status', '=', $status);
+
+                if($filters['approver'])
+                {
+                    $query->where('approver_id', '=', auth()->user()->user_id);
+                }
+            });
+        });
+    }
 }

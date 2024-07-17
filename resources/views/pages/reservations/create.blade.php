@@ -19,7 +19,11 @@
       <div class="tw-mb-3">
         <label for="vehicle_name" class="tw-block tw-mb-1 lg:tw-text-lg">Tipe Kendaraan</label>
         <select name="vehicle_name" id="vehicle_name" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" required>
+          @if(old('vehicle_name'))
+          <option value="{{ old('vehicle_name') }}" class="tw-hidden">{{ old('vehicle_name') }}</option>
+          @else
           <option value="" class="tw-hidden">Pilih Kendaraan</option>
+          @endif
           @foreach($vehicles as $vehicle)
           <option value="{{ $vehicle->vehicle_name }}">{{ $vehicle->vehicle_name }}</option>
           @endforeach
@@ -36,11 +40,11 @@
       <div class="tw-mb-3 tw-flex">
         <div class="tw-w-1/2 tw-mr-1">
           <label for="start_date" class="tw-block tw-mb-1 lg:tw-text-lg">Tanggal Mulai <span class="tw-text-red-500">*</span></label>
-          <input type="date" id="start_date" name="start_date" class="tw-w-full tw-border tw-border-secondary tw-rounded-md">
+          <input type="date" id="start_date" name="start_date" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" value="{{ old('start_date') }}">
         </div>
         <div class="tw-w-1/2 tw-ml-1">
           <label for="end_date" class="tw-block tw-mb-1 lg:tw-text-lg">Tanggal Selesai <span class="tw-text-red-500">*</span></label>
-          <input type="date" id="end_date" name="end_date" class="tw-w-full tw-border tw-border-secondary tw-rounded-md">
+          <input type="date" id="end_date" name="end_date" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" value="{{ old('end_date') }}">
         </div>
       </div>
       <div class="tw-w-full tw-mb-3">

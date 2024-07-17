@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\PageController;
@@ -24,6 +25,27 @@ Route::controller(PageController::class)->group(function() {
     Route::fallback('notFound');
 });
 
+Route::middleware('auth:Approver')->group(function() {
+    Route::controller(ApprovalController::class)->prefix('/approvals')->group(function() {
+        Route::put('/reservation/{reservation}', 'update')->name('approvals.request.update');
+    });
+
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
+
+    });
+});
+
+Route::middleware('auth:Admin')->group(function() {
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
+
+        Route::get('/create', 'create')->name('reservations.pages.create');
+        Route::get('/edit/{reservation}', 'edit')->name('reservations.pages.edit');
+
+        Route::post('', 'store')->name('reservations.request.store');
+        Route::put('/{reservation}', 'update')->name('reservations.request.update');
+    });
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::controller(PageController::class)->group(function() {
@@ -38,10 +60,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
         Route::get('', 'index')->name('reservations.pages.index');
-        Route::get('/create', 'create')->name('reservations.pages.create');
-        Route::get('/edit/{reservation}', 'edit')->name('reservations.pages.edit');
-        Route::post('', 'store')->name('reservations.request.store');
-        Route::put('/{reservation}', 'update')->name('reservations.request.update');
+        Route::get('/show/{reservation}', 'show')->name('reservations.pages.show');
+        Route::get('/finish/{reservation}', 'finish')->name('reservations.pages.finish');
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {
@@ -60,3 +80,4 @@ Route::middleware('auth')->group(function () {
         Route::put('/{vehicle}', 'update')->name('vehicles.request.update');
     });
 });
+

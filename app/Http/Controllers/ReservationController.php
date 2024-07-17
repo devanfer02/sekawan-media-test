@@ -21,7 +21,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $reservations = $this->reservationSvc->fetch(10);
+        $reservations = $this->reservationSvc->fetch(10, [
+            'status' => request('status')
+        ]);
 
         return view('pages.reservations.index', compact('reservations'));
     }
@@ -64,7 +66,14 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $reservation = $this->reservationSvc->fetchOne($reservation);
+
+        return view('pages.reservations.show', compact('reservation'));
+    }
+
+    public function pending(Reservation $reservation)
+    {
+        return view('pages.reservations.pendings', compact('reservation'));
     }
 
     /**

@@ -24,36 +24,70 @@ class ReservationService
         $this->logSvc = new LogService();
     }
 
-    public function fetch(int $pagination = 10)
+    public function fetch(int $pagination = 10, array $filters = [])
     {
         $reservations = Reservation::with([
             'vehicle',
             'admin',
             'approvals'
-        ])->paginate($pagination);
+        ]);
+
+        if (auth()->user()->load('role')->role->role_name === "Approver")
+        {
+            $filters['approver'] = auth()->user()->user_id;
+            
+            $reservations->filter($filters);
+        }
+
+
+        $reservations = $reservations->paginate($pagination);
 
         foreach($reservations as $reservation) {
             $isRejected = $reservation->approvals->contains('status', 'Rejected');
 
-            if ($isRejected) {
+            if ($isRejected)
+            {
                 $reservation['status'] = "Rejected";
-                $reservation['tailwindColor'] = 'tw-bg-red-500';
                 continue;
             }
 
             $isApproved = $reservation->approvals->every('status', 'Approved');
 
-            if ($isApproved) {
+            if ($isApproved)
+            {
                 $reservation['status'] = "Approved";
-                $reservation['tailwindColor'] = 'tw-bg-blue-500';
                 continue;
             }
 
             $reservation['status'] = "Pending";
-            $reservation['tailwindColor'] = 'tw-bg-yellow-500';
         }
 
         return $reservations;
+    }
+
+    public function fetchOne(Reservation $reservation)
+    {
+        $reservation->load('vehicle', 'approvals', 'approvals.approver', 'admin');
+
+        $isRejected = $reservation->approvals->contains('status', 'Rejected');
+
+        if ($isRejected)
+        {
+            $reservation['status'] = "Rejected";
+            return $reservation;
+        }
+
+        $isApproved = $reservation->approvals->every('status', 'Approved');
+
+        if ($isApproved)
+        {
+            $reservation['status'] = "Approved";
+            return $reservation;
+        }
+
+        $reservation['status'] = "Pending";
+
+        return $reservation;
     }
 
     public function store(Request $request)
@@ -260,6 +294,7 @@ class ReservationService
                 $task->await();
             }
 
+            $this->logSvc->create('memperbarui data pemesanan kendaraan ' . $reservation->vehicle->vehicle_name);
 
             DB::commit();
         } catch(\Exception $e) {

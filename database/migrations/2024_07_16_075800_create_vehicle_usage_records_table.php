@@ -17,6 +17,8 @@ return new class extends Migration
             $table->float('fuel_consumption', 2);
             $table->float('distance_traveled', 2);
             $table->timestamp('created_at')->useCurrent();
+            $table->date('start_date');
+            $table->date('end_date');
 
             $table->foreign('reservation_id')->references('reservation_id')->on('reservations');
         });
