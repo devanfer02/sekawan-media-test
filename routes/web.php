@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
         Route::get('', 'index')->name('reservations.pages.index');
         Route::get('/create', 'create')->name('reservations.pages.create');
-        Route::get('/edit/{reservation}')->name('reservations.pages.edit');
+        Route::get('/edit/{reservation}', 'edit')->name('reservations.pages.edit');
+        Route::post('', 'store')->name('reservations.request.store');
+        Route::put('/{reservation}', 'update')->name('reservations.request.update');
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {

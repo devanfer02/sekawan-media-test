@@ -50,7 +50,7 @@ class VehicleController extends Controller
 
             return redirect()->route('vehicles.pages.index')->with('success', 'Successfully create new vehicle');
         } catch (\Exception $e) {
-            return redirect()->back()->with('failed', $e->getMessage());
+            return redirect()->back()->wwithInput()->ith('failed', $e->getMessage());
         }
     }
 
@@ -82,7 +82,7 @@ class VehicleController extends Controller
 
             return redirect()->route('vehicles.pages.index')->with('success', 'Successfully update vehicle data');
         } catch (\Exception $e) {
-            return redirect()->back()->with('failed', $e->getMessage());
+            return redirect()->back()->withInput()->with('failed', $e->getMessage());
         }
     }
 
@@ -90,7 +90,8 @@ class VehicleController extends Controller
     {
         return [
             'vehicle_name' => 'required|min:5|max:50',
-            'vehicle_type' => 'required|in:Person,Cargo'
+            'vehicle_type' => 'required|in:Person,Cargo',
+            'vehicle_owner' => 'required|in:Compnay,Rental'
         ];
     }
 
@@ -101,7 +102,9 @@ class VehicleController extends Controller
             'vehicle_name.min' => 'Minimal panjang nama kendaraan adalah 5 karakter',
             'vehicle_name.max' => 'Maksimal panjang nama kendaraan adalah 50 karakter',
             'vehicle_type.required' => 'Tipe kendaraan wajib diisi',
-            'vehicle_type.in' => 'Tipe kendaraan harus merupakan Person atau Cargo'
+            'vehicle_type.in' => 'Tipe kendaraan harus merupakan Person atau Cargo',
+            'vehicle_owner.required' => 'Pemilik kendaraan wajib diisi',
+            'vehicle_owner.in' => 'Pemilik kendaraan harus merupakan Company atau Rental'
         ];
     }
 }

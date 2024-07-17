@@ -25,6 +25,14 @@
         </select>
       </div>
       <div class="tw-mb-3">
+        <label for="vehicle_owner" class="tw-block tw-mb-1 lg:tw-text-lg">Pemilik Kendaraan</label>
+        <select name="vehicle_owner" id="vehicle_owner" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" required>
+          <option value="" class="tw-hidden">Pilih Pemilik Kendaraan</option>
+          <option value="Company">Company</option>
+          <option value="Rental">Rental</option>
+        </select>
+      </div>
+      <div class="tw-mb-3">
         <button class="tw-w-full tw-border tw-border-secondary tw-bg-secondary tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-white hover:tw-text-secondary tw-duration-300 tw-ease-in-out">Tambah Kendaraan</button>
       </div>
       <x-alert />

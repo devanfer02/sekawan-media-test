@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">Tambah Kendaraan</h1>
+        <h1 class="tw-text-3xl">Perbarui Data Kendaraan</h1>
       </div>
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>
     </div>
@@ -26,7 +26,15 @@
         </select>
       </div>
       <div class="tw-mb-3">
-        <button class="tw-w-full tw-border tw-border-secondary tw-bg-secondary tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-white hover:tw-text-secondary tw-duration-300 tw-ease-in-out">Tambah Kendaraan</button>
+        <label for="vehicle_owner" class="tw-block tw-mb-1 lg:tw-text-lg">Pemilik Kendaraan</label>
+        <select name="vehicle_owner" id="vehicle_owner" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" required>
+          <option value="{{ $vehicle->vehicle_owner }}" class="tw-hidden">{{ $vehicle->vehicle_owner }}</option>
+          <option value="Company">Company</option>
+          <option value="Rental">Rental</option>
+        </select>
+      </div>
+      <div class="tw-mb-3">
+        <button class="tw-w-full tw-border tw-border-secondary tw-bg-secondary tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-white hover:tw-text-secondary tw-duration-300 tw-ease-in-out">Perbarui Kendaraan</button>
       </div>
       <x-alert />
     </form>

@@ -3,7 +3,7 @@ function initMultiselect() {
 
     document.addEventListener("click", function(evt) {
       var flyoutElement = document.getElementById('myMultiselect'),
-        targetElement = evt.target; 
+        targetElement = evt.target;
 
       do {
         if (targetElement == flyoutElement) {
@@ -39,6 +39,7 @@ function initMultiselect() {
     }
 
     multiselectOption.innerText = dropdownValue;
+    multiselectOption.value = dropdownValue;
   }
 
   function toggleCheckboxArea(onlyHide = false) {
@@ -56,6 +57,18 @@ function initMultiselect() {
   }
 
 
+function initDatePicker() {
+    const dateTags = document.querySelectorAll("input[type='date']");
+
+    dateTags.forEach(dateTag => {
+        dateTag.addEventListener('focus', function() {
+            dateTag.showPicker();
+            console.log("OK")
+        });
+    });
+}
+
 window.onload = (event) => {
     initMultiselect();
+    initDatePicker();
 };

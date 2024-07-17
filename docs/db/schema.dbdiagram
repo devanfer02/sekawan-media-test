@@ -31,14 +31,14 @@ Table reservations {
   start_date date [not null]
   end_date date [not null]
   created_at timestamp
+  updated_at timestamp
 }
 
 Table approvals {
   approval_id int [primary key, increment]
   reservation_id int [ref: > reservations.reservation_id]
   approver_id uuid [ref: > users.user_id]
-  approval_level int
-  status enum(pending, approved, rejected)
+  status enum(Pending, Approved, Rejected)
   comments text
   created_at timestamp
 }
@@ -47,4 +47,10 @@ Table vehicle_usage_records {
   reservation_id int [ref: > reservations.reservation_id]
   fuel_consumption float
   distance_traveled float
+}
+
+Table logs {
+  user_id uuid [ref: > users.user_id]
+  action varchar(200)
+  created_at timestamp
 }

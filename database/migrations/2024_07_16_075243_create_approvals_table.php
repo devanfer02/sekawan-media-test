@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('approval_id')->primary();
             $table->unsignedBigInteger('reservation_id');
             $table->uuid('approver_id');
-            $table->enum('status', ['pending', 'approved', 'rejected']);
+            $table->enum('status', ['Pending', 'Approved', 'Rejected']);
             $table->text('comments');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

@@ -24,7 +24,7 @@ class AuthController extends Controller
 
             return redirect()->route('dashboard');
         } catch (\Exception $e) {
-            return redirect()->route('auth.pages.login')->with('failed', $e->getMessage());
+            return redirect()->route('auth.pages.login')->withInput()->with('failed', $e->getMessage());
         }
     }
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
             return redirect()->route('auth.pages.login');
         } catch (\Exception $e) {
-            return redirect()->route('auth.pages.register')->with('failed', $e->getMessage());
+            return redirect()->route('auth.pages.register')->withInput()->with('failed', $e->getMessage());
         }
     }
 
