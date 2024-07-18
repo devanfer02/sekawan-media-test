@@ -15,7 +15,7 @@ Stack | Tech | Version |
 ### ⚙️ System Requirements
 
 #### Physical Data Model
-![img](./docs/db/Screenshot%20from%202024-07-18%2020-35-47.png)
+![img](./docs/db/sekawan%20media.png)
 
 #### Activity Diagram Pemesanan
 <img src="./docs/app/sekawan-activity.drawio.png" width="300px" >
