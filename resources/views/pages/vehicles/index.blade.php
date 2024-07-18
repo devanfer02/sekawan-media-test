@@ -3,7 +3,9 @@
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
         <h1 class="tw-text-3xl">List Kendaraan</h1>
+        @if(auth()->user()->load('role')->role->role_name === "Admin")
         <a href="{{ route('vehicles.pages.create') }}" class="btn btn-success">Tambah</a>
+        @endif
       </div>
       <x-alert />
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>
@@ -27,8 +29,10 @@
             <td class="tw-py-2">{{ $vehicle['vehicle_type'] }}</td>
             <td class="tw-py-2">{{ $vehicle['vehicle_owner'] }}</td>
             <td class="tw-py-2 tw-flex tw-justify-center">
-              <a href="" class="btn btn-primary tw-mr-1">Riwayat</a>
+              <a href="{{ route('vehicles.pages.show', $vehicle) }}" class="btn btn-primary tw-mr-1">Riwayat</a>
+              @if(auth()->user()->load('role')->role->role_name === "Admin")
               <a href="{{ route('vehicles.pages.edit', $vehicle) }}" class="btn btn-primary tw-ml-1">Edit</a>
+              @endif
             </td>
           </tr>
           @endforeach

@@ -16,8 +16,8 @@ Table users {
 Table vehicles {
   vehicle_id uuid [primary key]
   vehicle_name varchar(200)
-  vehicle_type enum(person, cargo)
-  is_rented bool
+  vehicle_type enum(Person, Cargo)
+  vehicle_owner enum(Company, Rental)
   created_at timestamp
   updated_at timestamp
 }

@@ -18,12 +18,14 @@
             name="Email"
             id="email"
             value="{{old('email')}}"
+            placeholder="Masukkan email akun kamu"
           />
           <x-input
             type="password"
             name="Password"
             id="password"
             value="{{old('password')}}"
+            placeholder="Masukkan password akun kamu"
           />
           <div class="tw-mb-3 tw-flex tw-items-center">
             <input type="checkbox" class="tw-rounded-md" name="remember" id="remember">

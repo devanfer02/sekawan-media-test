@@ -17,28 +17,24 @@ class ReservationExport implements WithHeadings, FromCollection, WithStyles
     */
     public function collection()
     {
-        $reservations = Reservation::select(
-            'vehicle_id',
-            'driver_name',
-            'destination',
-            'fuel_cost',
-            'start_date',
-            'end_date'
-        )->with([
+        $reservations = Reservation::with([
             'approvals',
             'approvals.approver',
-            'vehicle'
+            'vehicle',
+            'admin'
         ])->get();
 
-        $reservations = $reservations->map(function($reservation) {
-            $reservation->vehicle_id = $reservation->vehicle->vehicle_name;
+        foreach($reservations as $reservation)
+        {
+            $reservation['vehicle_id'] = $reservation->vehicle->vehicle_name;
+            $reservation['admin_id'] = $reservation->admin->fullname;
 
             $isRejected = $reservation->approvals->contains('status', 'Rejected');
 
             if ($isRejected)
             {
                 $reservation['status'] = "Rejected";
-                return $reservation;
+                continue;
             }
 
             $isApproved = $reservation->approvals->every('status', 'Approved');
@@ -46,13 +42,11 @@ class ReservationExport implements WithHeadings, FromCollection, WithStyles
             if ($isApproved)
             {
                 $reservation['status'] = "Approved";
-                return $reservation;
+                continue;
             }
 
             $reservation['status'] = "Pending";
-
-            return $reservation;
-        });
+        }
 
         return $reservations;
     }
@@ -67,12 +61,16 @@ class ReservationExport implements WithHeadings, FromCollection, WithStyles
     public function headings(): array
     {
         return [
+            'ID Pemesanan',
             'Nama Kendaraan',
+            'Nama Pemesan',
             'Nama Pengemudi',
             'Tujuan',
             'Biaya Bensin',
             'Tanggal Mulai',
             'Tanggal Selesai',
+            'Tanggal Pengajuan',
+            'Tanggal Perbarui',
             'Status'
         ];
     }

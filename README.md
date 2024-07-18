@@ -12,6 +12,21 @@ Stack | Tech | Version |
 🛢  Database | MySQL | 5.4 | 
 🛠️ Framework | Laravel | 11 |
 
+### ⚙️ System Requirements
+
+#### Physical Data Model
+![img](./docs/db/Screenshot%20from%202024-07-18%2020-35-47.png)
+
+#### Requirement Fungsional
+
+
+1. Admin can create new vehicle
+2. Admin can update a vehicle
+3. Admin can create a reservation for a vehicle with minimum 2 approvers
+4. Admin can upadte a reservation
+5. Approver can approve a reservation
+6. All users can export reservation data to an excel 
+
 
 ### 🔍 How to Use the Application
 
@@ -57,3 +72,11 @@ php artisan serve
 ```
 
 8. Open the application at [http://localhost:8000](http://localhost:8000)
+
+9. Use these login credentials to access the application
+
+Email | Password | Role | 
+--- | --- | --- |
+admin@gmail.com | pass123 | Admin |
+manager@gmail.com | pass123 | Approver | 
+

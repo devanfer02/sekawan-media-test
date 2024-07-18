@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
         Route::get('', 'index')->name('vehicles.pages.index');
         Route::get('/create', 'create')->name('vehicles.pages.create');
         Route::get('/edit/{vehicle}', 'edit')->name('vehicles.pages.edit');
+        Route::get('/show/{vehicle}', 'show')->name('vehicles.pages.show');
         Route::post('', 'store')->name('vehicles.request.store');
         Route::put('/{vehicle}', 'update')->name('vehicles.request.update');
     });
