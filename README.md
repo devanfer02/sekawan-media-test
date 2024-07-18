@@ -17,8 +17,8 @@ Stack | Tech | Version |
 #### Physical Data Model
 ![img](./docs/db/Screenshot%20from%202024-07-18%2020-35-47.png)
 
-### Activity Diagram Pemesanan
-![img](./docs/app/sekawan-activity.drawio.png)
+#### Activity Diagram Pemesanan
+<img src="./docs/app/sekawan-activity.drawio.png" width="300px" >
 
 #### Requirement Fungsional
 
