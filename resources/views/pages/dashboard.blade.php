@@ -1,19 +1,19 @@
 <x-app-layout>
   <div class="container">
     <div id="vehicleUsageByMonth" class="tw-mb-10">
-      <h1 class="tw-font-semibold tw-text-2xl">Pemakaian Kendaraan selama 6 Bulan Terakhir</h1>
+      <h1 class="tw-font-semibold tw-text-lg lg:tw-text-2xl">Pemakaian Kendaraan selama 6 Bulan Terakhir</h1>
       <div style="width: 100%; margin: auto;">
           <canvas id="vehicleUsageMonth"></canvas>
       </div>
     </div>
     <div id="topKVehicle" class="tw-mb-10">
-      <h1 class="tw-font-semibold tw-text-2xl">Top 10 Kendaraan yang Sering Digunakan</h1>
+      <h1 class="tw-font-semibold tw-text-lg lg:tw-text-2xl">Top 10 Kendaraan yang Sering Digunakan</h1>
       <div style="width: 100%; margin: auto;">
           <canvas id="topKVehicleUsage"></canvas>
       </div>
     </div>
     <div id="typeVehicle">
-      <h1 class="tw-font-semibold tw-text-2xl">Penggunaan Berdasarkan Tipe Kendaraan</h1>
+      <h1 class="tw-font-semibold tw-text-lg lg:tw-text-2xl">Penggunaan Berdasarkan Tipe Kendaraan</h1>
       <div style="width: 100%; margin: auto;">
           <canvas id="typeVehicleUsage"></canvas>
       </div>

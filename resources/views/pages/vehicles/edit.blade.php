@@ -2,11 +2,11 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">Perbarui Data Kendaraan</h1>
+        <h1 class="tw-text-xl lg:tw-text-3xl">Perbarui Data Kendaraan</h1>
       </div>
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>
     </div>
-    <form action="{{ route('vehicles.request.update', $vehicle) }}" method="POST" class="tw-border tw-border-secondary tw-rounded-md tw-px-8 tw-py-5">
+    <form action="{{ route('vehicles.request.update', $vehicle) }}" method="POST" class="tw-border tw-border-secondary tw-rounded-md tw-px-4 lg:tw-px-8 tw-py-5">
       @csrf
       @method('PUT')
       <x-input

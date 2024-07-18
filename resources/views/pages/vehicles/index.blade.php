@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">List Kendaraan</h1>
+        <h1 class="tw-text-xl lg:tw-text-3xl">List Kendaraan</h1>
         @if(auth()->user()->load('role')->role->role_name === "Admin")
         <a href="{{ route('vehicles.pages.create') }}" class="btn btn-success">Tambah</a>
         @endif

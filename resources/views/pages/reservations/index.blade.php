@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">List Pemesanan</h1>
+        <h1 class="tw-text-xl lg:tw-text-3xl">List Pemesanan</h1>
         <div>
           @if(auth()->user()->load('role')->role->role_name == "Approver")
           <a href="{{ route('reservations.pages.index', ['status' => 'Approved']) }}" class="btn {{ request('status') === "Approved" ? "tw-border tw-border-blue-500 tw-text-blue-500" : "btn-primary" }}">Disetujui</a>
@@ -17,7 +17,7 @@
       <x-alert />
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>
     </div>
-    <div class="">
+    <div class="tw-mb-5 tw-overflow-x-auto">
       <table class="tw-w-full">
         <thead>
           <tr class="tw-border tw-border-secondary tw-bg-secondary ">
@@ -53,7 +53,7 @@
                 {{ $reservation->status }}
               </span>
             </td>
-            <td class="tw-py-2 tw-flex tw-justify-center">
+            <td class="tw-py-2 tw-flex tw-justify-center tw-items-center">
               <a href="{{ route('reservations.pages.show', $reservation) }}" class="btn btn-primary tw-mr-1">Detail</a>
               @if(auth()->user()->load('role')->role->role_name === "Admin")
               <a href="{{ route('reservations.pages.edit', $reservation) }}" class="btn btn-primary tw-ml-1">Edit</a>
@@ -64,6 +64,8 @@
         </tbody>
       </table>
     </div>
-    {!! $reservations->links() !!}
+    <div>
+      {!! $reservations->links() !!}
+    </div>
   </div>
 </x-app-layout>

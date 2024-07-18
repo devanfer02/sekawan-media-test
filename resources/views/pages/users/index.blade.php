@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">List Pengguna</h1>
+        <h1 class="tw-text-lg lg:tw-text-3xl">List Pengguna</h1>
       </div>
       <x-alert />
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary"></div>

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-my-2">
-        <h1 class="tw-text-3xl">Kendaraan {{ $vehicle->vehicle_name }}</h1>
+        <h1 class="tw-text-xl lg:tw-text-3xl">Kendaraan {{ $vehicle->vehicle_name }}</h1>
       </div>
       <x-alert />
       <div class="tw-w-full tw-h-[1px] tw-bg-secondary tw-mb-5"></div>
@@ -26,10 +26,10 @@
           </table>
         </div>
         <div class="tw-w-full tw-mt-4 tw-mb-2">
-          <h1 class="tw-text-2xl">Riwayat Reservasi</h1>
+          <h1 class="tw-text-lg lg:tw-text-2xl">Riwayat Reservasi</h1>
         </div>
         <div class="tw-w-full tw-h-[1px] tw-bg-secondary tw-mb-2"></div>
-        <div class="tw-w-full">
+        <div class="tw-w-full tw-overflow-x-scroll">
           <table class="tw-w-full">
           <thead>
             <tr class="tw-border tw-border-secondary tw-bg-secondary ">
