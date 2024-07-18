@@ -9,7 +9,7 @@
 Stack | Tech | Version | 
 --- | --- | --- |
 🐘 PHP | PHP | 8.3.9
-🛢  Database | MySQL | 5.4 | 
+🛢  Database | MariaDB | 5.4 | 
 🛠️ Framework | Laravel | 11 |
 
 ### ⚙️ System Requirements
