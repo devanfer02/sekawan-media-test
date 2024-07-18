@@ -36,9 +36,9 @@ class ReservationService
         {
             $filters['approver'] = auth()->user()->user_id;
 
-            $reservations->filter($filters);
         }
-
+        
+        $reservations->filter($filters);
 
         $reservations = $reservations->paginate($pagination);
 

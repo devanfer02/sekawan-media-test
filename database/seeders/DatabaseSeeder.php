@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Approval;
+use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Vehicle;
@@ -39,11 +41,22 @@ class DatabaseSeeder extends Seeder
                 'fullname' => 'Admin 1',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('pass123')
+            ],
+            [
+                'user_id' => Uuid::uuid7(),
+                'role_id' => $approverRoleId,
+                'fullname' => 'Manager 1',
+                'email' => 'manager@gmail.com',
+                'password' => Hash::make('pass123')
             ]
         ]);
 
         User::factory(25)->role('Approver')->create();
 
         Vehicle::factory(50)->create();
+
+        Reservation::factory(200)->create();
+
+        Approval::factory(400)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,8 @@ class Reservation extends Model
         'fuel_cost',
         'start_date',
         'end_date',
+        'created_at',
+        'updated_at'
     ];
     use HasFactory;
 
@@ -44,11 +47,13 @@ class Reservation extends Model
             });
         })->when($filters['status'] ?? false, function($query, $status) use($filters) {
             return $query->whereHas('approvals', function($query) use($status, $filters) {
-                $query->where('status', '=', $status);
 
-                if($filters['approver'])
+                if(isset($filters['approver']))
                 {
+                    $query->where('status', '=', $status);
                     $query->where('approver_id', '=', auth()->user()->user_id);
+
+                    return;
                 }
             });
         });

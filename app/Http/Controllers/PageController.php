@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\StatisticsService;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    private $statSvc;
+
+    public function __construct()
+    {
+        $this->statSvc = new StatisticsService();
+    }
+
     public function dashboard()
     {
-        return view('pages.dashboard');
+        $usageDataMonth = $this->statSvc->getVehicleUsagePerMonth();
+        $top10Usage = $this->statSvc->getTopKVehicle();
+        $usageType = $this->statSvc->getVehicleUsageByType();
+
+
+        $data = compact('usageDataMonth', 'top10Usage', 'usageType');
+
+        return view('pages.dashboard', compact('data'));
     }
 
     public function login()
