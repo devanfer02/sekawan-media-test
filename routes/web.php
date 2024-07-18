@@ -43,6 +43,8 @@ Route::middleware('auth:Admin')->group(function() {
 
         Route::post('', 'store')->name('reservations.request.store');
         Route::put('/{reservation}', 'update')->name('reservations.request.update');
+
+        Route::get('/finish/{reservation}', 'finish')->name('reservations.pages.finish');
     });
 });
 
@@ -61,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
         Route::get('', 'index')->name('reservations.pages.index');
         Route::get('/show/{reservation}', 'show')->name('reservations.pages.show');
-        Route::get('/finish/{reservation}', 'finish')->name('reservations.pages.finish');
+
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {

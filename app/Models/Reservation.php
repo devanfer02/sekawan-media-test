@@ -15,6 +15,7 @@ class Reservation extends Model
         'admin_id',
         'driver_name',
         'destination',
+        'fuel_cost',
         'start_date',
         'end_date',
     ];

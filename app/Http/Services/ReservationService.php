@@ -35,7 +35,7 @@ class ReservationService
         if (auth()->user()->load('role')->role->role_name === "Approver")
         {
             $filters['approver'] = auth()->user()->user_id;
-            
+
             $reservations->filter($filters);
         }
 
@@ -145,7 +145,7 @@ class ReservationService
                 'admin_id' => auth()->user()->user_id,
             ];
 
-            $data = array_merge($data, $request->only(['driver_name', 'destination', 'start_date', 'end_date']));
+            $data = array_merge($data, $request->only(['driver_name', 'destination', 'start_date', 'end_date', 'fuel_cost']));
 
             $reservation = Reservation::create($data);
 
@@ -170,7 +170,7 @@ class ReservationService
                 $asyncTask["$user->user_id"]->await();
             }
 
-            $this->logSvc->create('membuat pemesanan kendaraan ' . $vehicle->vehicle_name);
+            $this->logSvc->create('membuat pemesanan kendaraan ' . $vehicle->vehicle_name . " untuk pengemudi " . $reservation->driver_name);
 
             DB::commit();
 

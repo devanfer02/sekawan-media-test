@@ -35,24 +35,33 @@
         </div>
         <div class="tw-flex tw-mb-2">
           <div class="tw-w-1/2 tw-mr-1">
-            <form action="{{$reservation->status === "Approved" ? route('') : ""}}">
-              <button class="tw-w-full btn
+            <button
+              class="tw-w-full btn tw-text-white
               {{ $reservation->status == "Approved" ? "btn-primary": ""}}
-              {{ $reservation->status == "Pending" ? "tw-bg-gray-200": ""}}
-              {{ $reservation->status == "Rejected" ? "tw-bg-gray-200": ""}}
-              ">Selesai</button>
-            </form>
+              {{ $reservation->status == "Pending" ? "btn-warning": ""}}
+              {{ $reservation->status == "Rejected" ? "btn-danger": ""}}
+              "
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#finishBackdrop"
+
+              >
+              {{ $reservation->status }}
+            </button>
           </div>
           <div class="tw-w-1/2 tw-ml-1">
 
             @if(auth()->user()->load('role')->role->role_name === "Admin")
             <a href="{{ route('reservations.pages.edit', $reservation) }}" class="btn btn-success tw-w-full">Edit Pemesanan</a>
             @else
-            <button type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn tw-w-full btn-primary">Persetujuan</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn tw-w-full btn-primary">Persetujuan</button>
             @endif
           </div>
         </div>
-
+        <div class="tw-w-full tw-mt-4 tw-mb-2">
+          <h1 class="tw-text-2xl">Pihak Penyetuju</h1>
+        </div>
+        <div class="tw-w-full tw-h-[1px] tw-bg-secondary tw-mb-2"></div>
         <div>
           <table class="tw-w-full">
             <thead>

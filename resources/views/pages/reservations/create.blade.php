@@ -17,7 +17,7 @@
         value="{{ old('driver_name') }}"
       />
       <div class="tw-mb-3">
-        <label for="vehicle_name" class="tw-block tw-mb-1 lg:tw-text-lg">Tipe Kendaraan</label>
+        <label for="vehicle_name" class="tw-block tw-mb-1 lg:tw-text-lg">Tipe Kendaraan <span class="tw-text-red-500">*</span></label>
         <select name="vehicle_name" id="vehicle_name" class="tw-w-full tw-border tw-border-secondary tw-rounded-md" required>
           @if(old('vehicle_name'))
           <option value="{{ old('vehicle_name') }}" class="tw-hidden">{{ old('vehicle_name') }}</option>
@@ -37,6 +37,14 @@
         placeholder="Masukkan tujuan"
         value="{{ old('destination') }}"
       />
+      <x-input
+        type="text"
+        name="Biaya Bensin"
+        id="fuel_cost"
+        required
+        placeholder="Masukkan biaya bensin"
+        value="{{ old('fuel_cost') }}"
+      />
       <div class="tw-mb-3 tw-flex">
         <div class="tw-w-1/2 tw-mr-1">
           <label for="start_date" class="tw-block tw-mb-1 lg:tw-text-lg">Tanggal Mulai <span class="tw-text-red-500">*</span></label>
@@ -49,7 +57,7 @@
       </div>
       <div class="tw-w-full tw-mb-3">
         <div class="form-group col-sm-8 tw-w-full">
-          <label for="myMultiselect" class="lg:tw-text-lg">Nama Penyetuju <span class="tw-text-red-500">*</span></label>
+          <label for="myMultiselect" class="lg:tw-text-lg">Pihak Penyetuju <span class="tw-text-red-500">*</span></label>
           <div id="myMultiselect" class="multiselect">
             <div id="mySelectLabel" class="selectBox" onclick="toggleCheckboxArea()">
               <select class="tw-rounded-md tw-border tw-border-secondary" required name="approvers">

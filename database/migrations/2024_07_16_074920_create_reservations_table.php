@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('admin_id');
             $table->string('driver_name')->nullable(false);
             $table->string('destination');
+            $table->integer('fuel_cost');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamp('created_at')->useCurrent();

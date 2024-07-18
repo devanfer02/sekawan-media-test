@@ -15,12 +15,14 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        $user = auth()->user()->load('role');
+        $user = auth()->user();
 
         if (!$user)
         {
             return redirect(route('auth.pages.login'));
         }
+
+        $user->load('role');
 
         foreach($roles as $role)
         {

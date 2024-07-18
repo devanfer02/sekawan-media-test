@@ -1,0 +1,2 @@
+1. Terdapat dashboard yang menampilkan grafik pemakaian kendaraan (chartjs)
+2. Terdapat laporan periodik pemesanan kendaraan yang dapat di export (Laravel Excel)
