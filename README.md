@@ -61,7 +61,7 @@ cp .env.example .env
 5. Generate application key and run the migartions
 ```zsh
 php artisan key:generate
-php artisan migrate:fresh --seed
+php artisan migrate --seed
 ```
 
 6. Build tailwindcss in another terminal
