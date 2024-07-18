@@ -41,6 +41,7 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate($this->rules(), $this->rulesMessage());
 
         try {
@@ -48,9 +49,11 @@ class VehicleController extends Controller
 
             $this->logSvc->create('membuat mobil ' . $request['vehicle_name']);
 
+
+
             return redirect()->route('vehicles.pages.index')->with('success', 'Successfully create new vehicle');
         } catch (\Exception $e) {
-            return redirect()->back()->wwithInput()->ith('failed', $e->getMessage());
+            return redirect()->back()->withInput()->with('failed', $e->getMessage());
         }
     }
 
@@ -93,7 +96,7 @@ class VehicleController extends Controller
         return [
             'vehicle_name' => 'required|min:5|max:50',
             'vehicle_type' => 'required|in:Person,Cargo',
-            'vehicle_owner' => 'required|in:Compnay,Rental'
+            'vehicle_owner' => 'required|in:Company,Rental'
         ];
     }
 

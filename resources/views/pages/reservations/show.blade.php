@@ -54,7 +54,12 @@
             @if(auth()->user()->load('role')->role->role_name === "Admin")
             <a href="{{ route('reservations.pages.edit', $reservation) }}" class="btn btn-success tw-w-full">Edit Pemesanan</a>
             @else
+            @if($reservation->approvals->firstWhere('approver_id', auth()->user()->user_id))
             <button type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn tw-w-full btn-primary">Persetujuan</button>
+            @else
+            <button type="button" class="btn tw-w-full btn tw-text-gray-400 tw-border-gray-400">Persetujuan</button>
+            @endif
+
             @endif
           </div>
         </div>
@@ -98,7 +103,7 @@
     </div>
     <div class="">
     </div>
-    @if(auth()->user()->load('role')->role->role_name === "Approver")
+    @if(auth()->user()->load('role')->role->role_name === "Approver" && $reservation->approvals->firstWhere('approver_id', auth()->user()->user_id))
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

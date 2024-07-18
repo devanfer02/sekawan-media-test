@@ -34,6 +34,14 @@
         placeholder="Masukkan tujuan"
         value="{{ $reservation->destination }}"
       />
+      <x-input
+        type="text"
+        name="Biaya Bensin"
+        id="fuel_cost"
+        required
+        placeholder="Masukkan biaya bensin"
+        value="{{ $reservation->fuel_cost }}"
+      />
       <div class="tw-mb-3 tw-flex">
         <div class="tw-w-1/2 tw-mr-1">
           <label for="start_date" class="tw-block tw-mb-1 lg:tw-text-lg">Tanggal Mulai <span class="tw-text-red-500">*</span></label>
