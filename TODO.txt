@@ -1,5 +1,0 @@
-URGENT:
-1. Terdapat dashboard yang menampilkan grafik pemakaian kendaraan (chartjs)
-
-NOT THAT IMPORTANT:
-1. styling excel
