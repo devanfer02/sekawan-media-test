@@ -58,7 +58,6 @@ class ReservationController extends Controller
     {
         $request->validate($this->rules(), $this->rulesMessage());
 
-        dd("OK");
 
         try {
 
