@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
         Route::get('', 'index')->name('reservations.pages.index');
         Route::get('/show/{reservation}', 'show')->name('reservations.pages.show');
-
+        Route::get('/export/excel', 'exportExcel')->name('reservations.request.export.excel');
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {

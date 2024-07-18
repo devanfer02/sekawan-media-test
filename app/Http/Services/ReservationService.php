@@ -42,7 +42,8 @@ class ReservationService
 
         $reservations = $reservations->paginate($pagination);
 
-        foreach($reservations as $reservation) {
+        foreach($reservations as $reservation)
+        {
             $isRejected = $reservation->approvals->contains('status', 'Rejected');
 
             if ($isRejected)

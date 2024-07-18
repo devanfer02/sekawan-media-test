@@ -9,7 +9,8 @@
           <a href="{{ route('reservations.pages.index', ['status' => 'Rejected']) }}" class="btn {{ request('status') === "Rejected" ? "tw-border tw-border-red-500 tw-text-red-500" : "btn-danger" }}">Ditolak</a>
           <a href="{{ route('reservations.pages.index', ['status' => 'Pending']) }}" class="btn {{ request('status') === "Pending" ? "tw-border tw-border-yellow-500 tw-text-yellow-500" : "btn-warning" }}">Menunggu</a>
           @else
-          <a href="{{ route('reservations.pages.create') }}" class="btn btn-success">Tambah</a>
+          <a class="tw-mr-1 btn btn-primary" target="_blank" href="{{ route('reservations.request.export.excel') }}">Export Excel</a>
+          <a href="{{ route('reservations.pages.create') }}" class="btn btn-success tw-ml-1">Tambah</a>
           @endif
         </div>
       </div>

@@ -28,6 +28,7 @@ Table reservations {
   admin_id uuid [ref: > users.user_id]
   driver_name varchar(200) [not null]
   destination varchar(200)
+  fuel_cost integer
   start_date date [not null]
   end_date date [not null]
   created_at timestamp

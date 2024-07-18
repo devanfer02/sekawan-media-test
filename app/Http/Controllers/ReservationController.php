@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ReservationExport;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Services\ReservationService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReservationController extends Controller
 {
@@ -16,6 +18,12 @@ class ReservationController extends Controller
     {
         $this->reservationSvc = new ReservationService();
     }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ReservationExport, 'laporan_periodik_pemesanan.xlsx');
+    }
+
     /**
      * Display a listing of the resource.
      */
