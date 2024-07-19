@@ -21,8 +21,11 @@ class VehicleFactory extends Factory
         $types = collect(['Person', 'Cargo']);
         $owners = collect(['Company', 'Rental']);
 
+        $faker = (new \Faker\Factory())::create();
+        $faker->addProvider(new \Faker\Provider\FakeCar($faker));
+
         return [
-            'vehicle_name' => fake()->words(2, true),
+            'vehicle_name' => $faker->vehicle,
             'vehicle_type' => $types->random(),
             'vehicle_owner' => $owners->random()
         ];
