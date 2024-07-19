@@ -58,7 +58,7 @@ npm install
 cp .env.example .env
 ```
 
-5. Generate application key and run the migartions
+5. Generate application key and run the migrations
 ```zsh
 php artisan key:generate
 php artisan migrate --seed
