@@ -14,7 +14,7 @@
 
         <div class="tw-block lg:tw-hidden">
           <li class="nav-item">
-            <a class="nav-link" href="#">Admin 1</a>
+            <a class="nav-link" href="#">{{ auth()->user()->fullname  }}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Logout</a>
