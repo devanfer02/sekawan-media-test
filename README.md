@@ -26,7 +26,7 @@ Stack | Tech | Version |
 1. Admin can create new vehicle
 2. Admin can update a vehicle
 3. Admin can create a reservation for a vehicle with minimum 2 approvers
-4. Admin can upadte a reservation
+4. Admin can update a reservation
 5. Approver can approve a reservation
 6. All users can export reservation data to an excel 
 
